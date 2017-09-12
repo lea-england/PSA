@@ -1,4 +1,4 @@
-mydata=read.csv("/Users/leaengland/Desktop/untitled.csv")
+mydata=read.csv("/Users/leaengland/Desktop/untitled.csv") #need to change file path
 attach(mydata)
 head(mydata)
 summary(mydata)
