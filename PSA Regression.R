@@ -1,4 +1,4 @@
-mydata=read.csv("/Users/leaengland/Desktop/untitled.csv") #need to change file path
+mydata=read.csv("/Users/leaengland/Desktop/untitled.csv") 
 attach(mydata)
 head(mydata)
 summary(mydata)
@@ -110,17 +110,18 @@ fits1=model1$fitted
 plot(resids1~fits1,col="red",pch=19,main="Residuals vs Fitted Values (log(PSA))")
 abline(h=0)
 
-
+#Based on lowest Cp and highest adjusted R^2, we proceed with log(PSA) and sqrt(PSA). Examining the residual vs fitted value plots, log(PSA) looks to be the best model.
+#The residuals are scattered more randomly above and below zero than the other transformations, which show clusters or patterns. Specifically, sqrt(PSA) shows megaphone-like pattern, which is a common violation indicates nonconstant variance.
 #####################################################
 par(mfrow=c(1,2))
-#Stepwise regression: which combines the strategies of forward selection and backward elimination
+#Stepwise regression to confirm our log(PSA) model 
 #Complete Second Order Model
 fullmodel=lm(LPSA~volume+invasion+VSq,data=mydata)
 MSE=(summary(fullmodel)$sigma)^2
 none=lm(LPSA~1)
 step(none,scope=list(upper=fullmodel),scale=MSE)
 
-#continue to test validity of other assumptions in using a linear model
+
 
 
 
